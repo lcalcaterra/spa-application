@@ -3,7 +3,7 @@ from azure.storage.blob import BlobServiceClient
 import logging
 import os
 
-connect_str = os.environ["AzureWebJobsStorage"]
+connect_str = os.environ["webappstorage_connstr"]
 container_name = "files"
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
@@ -47,4 +47,5 @@ def check_file(req: func.HttpRequest) -> func.HttpResponse:
         )
     except Exception as e:
             logging.error(e)
+
             return func.HttpResponse("Error occurred", status_code=500)
